@@ -54,7 +54,6 @@ class UmpireBuddyHelper {
         strikeCount = count;
     }
 
-
     void setBallCount(int count) {
         ballCount = count;
     }

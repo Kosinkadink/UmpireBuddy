@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -22,6 +23,23 @@ public class MainActivity extends AppCompatActivity {
         resources = getResources();
         // Create helper
         umpireBuddyHelper = new UmpireBuddyHelper();
+
+        // ~~~ Add Button Listeners ~~~
+        // Strike Button
+        final Button strikeButton = (Button)findViewById(R.id.strikeButton);
+        strikeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                incrementStrikeCount(v);
+            }
+        });
+        // Ball Button
+        final Button ballButton = (Button)findViewById(R.id.ballButton);
+        ballButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                incrementBallCount(v);
+            }
+        });
+
         // Initialize texts
         updateAllText();
     }
