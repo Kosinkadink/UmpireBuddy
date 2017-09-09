@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jedkos.umpirebuddy.MainActivity">
+
+    <Button
+        android:id="@+id/strikeButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="incrementStrikeCount"
+        android:text="@string/strike"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/ballView"
+        app:layout_constraintRight_toLeftOf="@+id/ballButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp" />
+
+    <Button
+        android:id="@+id/ballButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="incrementBallCount"
+        android:text="@string/ball"
+        app:layout_constraintLeft_toRightOf="@+id/strikeButton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/strikeButton"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp" />
+
+    <TextView
+        android:id="@+id/strikeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/strike"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.501" />
+
+    <TextView
+        android:id="@+id/ballView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/ball"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/strikeView" />
+
+    <TextView
+        android:id="@+id/outView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="31dp"
+        android:text="@string/total_outs"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ballButton"
+        tools:text="@string/total_outs"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+
+</android.support.constraint.ConstraintLayout>
