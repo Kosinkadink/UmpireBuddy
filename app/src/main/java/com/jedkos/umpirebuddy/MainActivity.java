@@ -3,6 +3,7 @@ package com.jedkos.umpirebuddy;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String PREFERENCES_NAME = "UmpireBuddyPreferences";
     private UmpireBuddyHelper umpireBuddyHelper;
     private Resources resources;
 
@@ -42,9 +44,21 @@ public class MainActivity extends AppCompatActivity {
                 incrementBallCount(v);
             }
         });
-
+        // Get saved preferences
+        SharedPreferences settings = getSharedPreferences(PREFERENCES_NAME, 0);
+        umpireBuddyHelper.setOutCount(settings.getInt("outs", 0));
         // Initialize texts
         updateAllText();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences settings = getSharedPreferences(PREFERENCES_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("outs", umpireBuddyHelper.getOutCount());
+        editor.apply();
     }
 
     // Create options menu
@@ -108,12 +122,14 @@ public class MainActivity extends AppCompatActivity {
     private void updateAllText() {
         updateStrikeText();
         updateBallText();
+        updateOutText();
     }
 
     private void updateStrikeText() {
         TextView strikeTextView = (TextView)findViewById(R.id.strikeView);
         strikeTextView.setText(getStrikeText());
         if (umpireBuddyHelper.enoughStrikes()) {
+            umpireBuddyHelper.incrementOutCount();
             displayOutDialog();
         }
     }
@@ -126,6 +142,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void updateOutText() {
+        TextView outTextView = (TextView)findViewById(R.id.outView);
+        outTextView.setText(getOutText());
+    }
+
     /* Generate Text Strings */
     public String getStrikeText() {
         return resources.getString(R.string.strike) + ": " + umpireBuddyHelper.getStrikeCount();
@@ -133,6 +154,10 @@ public class MainActivity extends AppCompatActivity {
 
     public String getBallText() {
         return resources.getString(R.string.ball) + ": " + umpireBuddyHelper.getBallCount();
+    }
+
+    public String getOutText() {
+        return resources.getString(R.string.total_outs) + ": " + umpireBuddyHelper.getOutCount();
     }
 
     /* Create a Dialog and display it*/

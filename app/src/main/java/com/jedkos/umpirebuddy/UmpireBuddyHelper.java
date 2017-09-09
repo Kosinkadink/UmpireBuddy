@@ -7,6 +7,7 @@ class UmpireBuddyHelper {
     private static final int ballBound = 4;
     private int strikeCount;
     private int ballCount;
+    private int outCount;
 
     UmpireBuddyHelper() {
         ballCount = 0;
@@ -24,6 +25,10 @@ class UmpireBuddyHelper {
         if (!enoughBalls()) {
             ballCount++;
         }
+    }
+
+    void incrementOutCount() {
+        outCount++;
     }
 
     /* Check if strikes and balls in bound */
@@ -58,4 +63,11 @@ class UmpireBuddyHelper {
         ballCount = count;
     }
 
+    int getOutCount() {
+        return outCount;
+    }
+
+    void setOutCount(int count) {
+        outCount = count;
+    }
 }

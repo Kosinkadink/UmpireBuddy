@@ -8,4 +8,5 @@
     <string name="reset">Reset</string>
     <string name="about">About</string>
     <string name="author">Jedrzej Kosinski</string>
+    <string name="total_outs">Total Outs</string>
 </resources>
