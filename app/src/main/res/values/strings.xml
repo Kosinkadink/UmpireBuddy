@@ -5,4 +5,7 @@
     <string name="out_exclaim">Out!</string>
     <string name="walk_exclaim">Walk!</string>
     <string name="ok">OK</string>
+    <string name="reset">Reset</string>
+    <string name="about">About</string>
+    <string name="author">Jedrzej Kosinski</string>
 </resources>

@@ -2,14 +2,16 @@ package com.jedkos.umpirebuddy;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         umpireBuddyHelper = new UmpireBuddyHelper();
 
         // ~~~ Add Button Listeners ~~~
+
         // Strike Button
         final Button strikeButton = (Button)findViewById(R.id.strikeButton);
         strikeButton.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +45,32 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize texts
         updateAllText();
+    }
+
+    // Create options menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.general_menu, menu);
+        return true;
+    }
+
+    // Add options menu actions
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.resetMenuButton:
+                umpireBuddyHelper.resetAllCounts();
+                updateAllText();
+                return true;
+            case R.id.aboutMenuButton:
+                // start AboutActivity
+                this.startActivity(new Intent(this, AboutActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /* When the screen orientation changes, data should persist */
